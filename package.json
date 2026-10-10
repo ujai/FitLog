@@ -44,7 +44,12 @@
   },
   "pnpm": {
     "overrides": {
-      "undici": "^7.29.1"
+      "undici": "^7.29.1",
+      "source-map-js@<1.2.2": "^1.2.2",
+      "js-yaml@>=4 <4.3.2": "^4.3.2",
+      "brace-expansion@<1.1.21": "^1.1.21",
+      "brace-expansion@>=4 <5.0.12": "^5.0.12",
+      "esbuild@<=0.24.2": "^0.25.0"
     }
   },
   "packageManager": "pnpm@10.30.3"
