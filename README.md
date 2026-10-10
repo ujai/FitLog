@@ -1,5 +1,8 @@
 # FitLog
 
+[![CI](https://github.com/ujai/FitLog/actions/workflows/ci.yml/badge.svg)](https://github.com/ujai/FitLog/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+
 A self-hosted health tracker for a small household and their personal trainer:
 
 - **Body composition scans** (Evolt 360) — upload a screenshot, AI reads the numbers, compare any two scans side by side, trend charts, AI review with actionable pointers
@@ -15,6 +18,18 @@ Three roles, enforced server-side:
 | member  | own data only                     | log own scans/workouts/meals                 |
 | trainer | all members' data                 | log workouts/sessions, schedule PT sessions  |
 | admin   | everything + `/users` management  | create/remove accounts                       |
+
+## Screenshots
+
+Phone-sized, with made-up demo data.
+
+<p>
+  <img src="docs/screenshots/dashboard.png" alt="Home dashboard with latest scan stats" width="190">
+  <img src="docs/screenshots/scans.png" alt="Body composition trend charts" width="190">
+  <img src="docs/screenshots/workouts.png" alt="Workout progress and best sets" width="190">
+  <img src="docs/screenshots/calendar.png" alt="PT calendar with upcoming sessions" width="190">
+  <img src="docs/screenshots/diet.png" alt="Diet diary meal logging" width="190">
+</p>
 
 ## Stack
 
