@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "verify": "pnpm exec tsc --noEmit && pnpm lint && pnpm build",
+    "verify": "pnpm exec next typegen && pnpm exec tsc --noEmit && pnpm lint && pnpm build",
     "qa": "node --env-file=.env.local scripts/qa.ts",
     "test": "node scripts/analytics.test.ts",
     "db:generate": "node --env-file=.env.local node_modules/drizzle-kit/bin.cjs generate",
