@@ -1,0 +1,1 @@
+ALTER TABLE "workout_templates" ADD COLUMN "shared" boolean DEFAULT false NOT NULL;

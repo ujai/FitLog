@@ -1,0 +1,111 @@
+@import "tailwindcss";
+
+:root {
+  /* No dark mode exists; this is what stops Android force-dark from repainting
+     the paper and inverting UA form controls. */
+  color-scheme: light;
+  /* Native controls (date/time pickers, radio dots, the file chooser) draw
+     their own accent; without this they use the platform blue. */
+  accent-color: #047857;
+  --background: #f5f4f0;
+  --foreground: #292524;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  /* DESIGN.md's Warm Paper as an addressable token. `bg-stone-100` is NOT it:
+     Tailwind's stone-100 is #f5f5f4, one unit off on two channels, so the page
+     quietly drifted from the documented colour. */
+  --color-paper: var(--background);
+  --font-sans: var(--font-geist-sans);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+/* Android's pull-to-refresh reloads the whole app, which would discard a
+   half-typed workout; `none` also stops the rubber-band from exposing white
+   bands behind the blurred bars when the app is installed. Forms keep their own
+   drafts (src/lib/form-draft.ts) as the recovery. */
+html,
+body {
+  overscroll-behavior-y: none;
+}
+
+/* Touch: skip the double-tap-zoom hold on controls, and tint the Android
+   tap highlight to the theme instead of the default gray flash */
+a,
+button,
+select,
+summary,
+label {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgba(16, 185, 129, 0.2);
+}
+
+/* Browser surfaces: the parts we did not draw still carry the design. Text
+   selection, the scrollbar, and underline placement ship with defaults that
+   belong to no design system — left alone they are the cheapest tell that a
+   page was assembled rather than built. (The caret already reads as ink via
+   `auto`, so it needs nothing.) */
+::selection {
+  background-color: rgba(4, 120, 87, 0.25);
+  color: #292524;
+}
+
+html {
+  /* Pencil on paper rather than the platform's cool grey. */
+  scrollbar-color: #d6d3d1 #f5f4f0;
+}
+
+/* One underline offset everywhere, so links do not each pick their own. */
+a {
+  text-underline-offset: 2px;
+}
+
+/* Print: the diet handout is a real deliverable (DESIGN.md) — black on white,
+   chrome-free, and grouped by hairlines rather than by the app's tonal veils. */
+@media print {
+  /* The browser default margin varies and can clip the period header; pin it. */
+  @page {
+    margin: 12mm;
+  }
+
+  header,
+  nav,
+  footer {
+    display: none !important;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  main {
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+
+  /* The translucent veil and the tonal tiles mean nothing on paper and only
+     waste toner. Borders carry the grouping. */
+  * {
+    background-color: transparent !important;
+    color: #000000 !important;
+    border-color: #999999 !important;
+    box-shadow: none !important;
+  }
+
+  /* Never crop a photo: the dietician is reading the food, and `cover` cut the
+     edges off every meal shot. Sizing stays with the component's print:
+     utilities — this only removes the cap and the crop. */
+  img {
+    max-width: 100% !important;
+    max-height: 6cm;
+    object-fit: contain;
+  }
+}

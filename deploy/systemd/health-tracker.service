@@ -1,0 +1,27 @@
+# FitLog app service — systemd *user* unit.
+#
+# Install:
+#   1. Adjust the paths below to where your clone lives.
+#   2. cp deploy/systemd/health-tracker.service ~/.config/systemd/user/
+#   3. systemctl --user daemon-reload
+#   4. systemctl --user enable --now health-tracker
+#   5. loginctl enable-linger $USER   # keep it running after logout
+#
+# It serves the last `pnpm build` output — rebuild, then restart, after
+# pulling code. Stop it before running `pnpm dev` (same port).
+[Unit]
+Description=FitLog health tracker app server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/fitlog
+# Bring up the local Postgres (docker-compose.yml) and wait until it is healthy.
+ExecStartPre=/usr/bin/docker compose -f %h/fitlog/docker-compose.yml up -d db --wait
+ExecStart=/usr/bin/env pnpm exec next start -p 3457
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target

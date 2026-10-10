@@ -1,0 +1,12 @@
+# FitLog nightly database backup — systemd *user* unit.
+# Adjust the paths below to where your clone lives, then copy to
+# ~/.config/systemd/user/ and enable health-tracker-backup.timer.
+[Unit]
+Description=FitLog database backup (pg_dump)
+After=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=%h/fitlog
+ExecStartPre=/usr/bin/docker compose -f %h/fitlog/docker-compose.yml up -d db --wait
+ExecStart=/usr/bin/env bash %h/fitlog/scripts/backup-db.sh

@@ -1,0 +1,11 @@
+[Unit]
+Description=Daily Health Tracker database backup
+
+[Timer]
+OnCalendar=*-*-* 03:30:00
+# Runs at the next boot if the machine was off at 03:30.
+Persistent=true
+RandomizedDelaySec=10min
+
+[Install]
+WantedBy=timers.target

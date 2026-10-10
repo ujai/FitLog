@@ -1,0 +1,51 @@
+{
+  "name": "fitlog",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "dev": "next dev -p 3457",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "verify": "pnpm exec tsc --noEmit && pnpm lint && pnpm build",
+    "qa": "node --env-file=.env.local scripts/qa.ts",
+    "test": "node scripts/analytics.test.ts",
+    "db:generate": "node --env-file=.env.local node_modules/drizzle-kit/bin.cjs generate",
+    "db:migrate": "node --env-file=.env.local node_modules/drizzle-kit/bin.cjs migrate",
+    "db:seed": "node --env-file=.env.local src/db/seed.ts",
+    "db:backup": "bash scripts/backup-db.sh",
+    "db:studio": "node --env-file=.env.local node_modules/drizzle-kit/bin.cjs studio"
+  },
+  "dependencies": {
+    "@ai-sdk/google": "^4.0.45",
+    "@better-auth/drizzle-adapter": "^1.7.1",
+    "ai": "^7.0.68",
+    "better-auth": "^1.7.1",
+    "drizzle-orm": "^0.45.2",
+    "next": "^16.3.8",
+    "postgres": "^3.4.9",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "recharts": "^3.10.1",
+    "sharp": "^0.35.5",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "drizzle-kit": "^0.31.10",
+    "eslint": "^9",
+    "eslint-config-next": "^16.3.8",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  },
+  "pnpm": {
+    "overrides": {
+      "undici": "^7.29.1"
+    }
+  },
+  "packageManager": "pnpm@10.30.3"
+}

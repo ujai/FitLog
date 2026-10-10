@@ -1,0 +1,1 @@
+ALTER TABLE "metric_goals" ADD COLUMN "direction" text;

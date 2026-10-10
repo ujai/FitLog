@@ -1,0 +1,1 @@
+ALTER TABLE "workout_sessions" ALTER COLUMN "created_by" DROP NOT NULL;
